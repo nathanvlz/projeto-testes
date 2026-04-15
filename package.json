@@ -1,0 +1,12 @@
+{
+  "name": "projeto-bio-testes",
+  "version": "1.0.0",
+  "description": "Projeto com testes unitários",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
