@@ -1,19 +1,49 @@
-Análise Crítica dos Testes
+# Análise Crítica dos Testes
 
-Introdução
-Foi selecionado o módulo de validação de formulário, responsável por verificar os dados inseridos pelo usuário.
+## Introdução
 
-Estratégia de Testes
-Foram criados testes unitários utilizando Jest, cobrindo cenários principais, erros e casos de limite.
+O presente trabalho foi desenvolvido a partir de um projeto criado anteriormente na disciplina de Programação Web Mobile. O projeto original consistia em uma aplicação simples em HTML com o objetivo de apresentar uma biografia pessoal, incluindo informações básicas organizadas em uma interface web.
 
-Resultados
-A cobertura de código foi satisfatória, com a maior parte das funções sendo testadas.
+Para a realização desta atividade, foi selecionado o módulo de validação de formulário, responsável por verificar os dados inseridos pelo usuário, como nome, e-mail e mensagem. Essa escolha foi feita por se tratar de uma parte do sistema que contém lógica de negócio relevante e que impacta diretamente na qualidade dos dados recebidos.
 
-Problemas Encontrados
-A validação de e-mail é simples e aceita entradas inválidas como "@." ou "a@b".
+## Estratégia de Testes
 
-Melhorias Sugeridas
-Utilizar uma validação mais robusta com expressão regular e ampliar os testes para casos extremos.
+Os testes foram implementados utilizando o framework Jest, com o objetivo de validar o comportamento das funções responsáveis pela verificação dos dados do formulário.
 
-Conclusão
-Os testes ajudaram a identificar falhas e melhorar a qualidade do sistema.
+Foram considerados três tipos principais de cenários:
+
+- Cenários válidos, nos quais os dados inseridos atendem aos critérios esperados
+- Casos de erro, com entradas inválidas ou incompletas
+- Casos de limite (edge cases), como campos vazios, valores mínimos e entradas com espaços em branco
+
+Essa abordagem permitiu avaliar o comportamento do sistema em diferentes situações, garantindo uma análise mais completa da qualidade do código.
+
+## Resultados
+
+Após a execução dos testes, foi possível observar que a cobertura de código atingiu 100% em todos os critérios, incluindo linhas, funções e ramificações. Isso indica que todas as partes do código analisado foram executadas durante os testes.
+
+Apesar da alta cobertura, nem todos os testes passaram com sucesso, o que evidencia que a cobertura de código, por si só, não garante a ausência de erros. Esse resultado reforça a importância de se criar testes bem planejados e significativos, que realmente validem o comportamento esperado do sistema.
+
+## Problemas Encontrados
+
+Durante a execução dos testes, foram identificadas falhas relacionadas à validação de e-mail. A implementação atual utiliza uma verificação simplificada baseada apenas na presença dos caracteres "@" e ".", o que permite que entradas inválidas, como "@." ou "a@b", sejam consideradas válidas.
+
+Esse comportamento representa um risco para a integridade dos dados, pois pode permitir o envio de informações incorretas ou incompletas pelo usuário.
+
+Além disso, foram observadas limitações em relação ao tratamento de entradas com espaços em branco e à ausência de validações mais rigorosas para os campos do formulário.
+
+## Melhorias Sugeridas
+
+Como forma de melhorar a qualidade do sistema, recomenda-se a substituição da validação atual de e-mail por uma expressão regular mais robusta, capaz de verificar corretamente o formato esperado.
+
+Também é importante ampliar a quantidade de testes, incluindo novos cenários extremos, como entradas muito longas, caracteres especiais e diferentes formatos de dados.
+
+Outra melhoria relevante seria a implementação de mensagens de erro mais claras para o usuário, facilitando a correção dos dados inseridos.
+
+## Conclusão
+
+A realização desta atividade permitiu compreender, na prática, a importância dos testes de software na garantia da qualidade do código. Mesmo em um projeto simples, foi possível identificar falhas que poderiam passar despercebidas durante o desenvolvimento.
+
+O uso de testes unitários mostrou-se essencial para validar o comportamento das funções e evidenciar pontos de melhoria. Além disso, a análise da cobertura de código contribuiu para uma visão mais ampla sobre o nível de testes aplicado.
+
+Por fim, a atividade reforça que a qualidade de um software não depende apenas de sua funcionalidade, mas também da confiabilidade e consistência de seus resultados.
