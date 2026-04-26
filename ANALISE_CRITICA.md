@@ -55,6 +55,8 @@ Durante a execução desses testes, foi possível garantir que as validações e
 
 Além disso, os testes de integração permitiram identificar e isolar inconsistências existentes em testes anteriores, reforçando a importância de validar o sistema como um todo, e não apenas em partes isoladas.
 
+A evidência da execução dos testes de integração pode ser visualizada no arquivo "teste-integracao.png" presente no repositório.
+
 
 
 ## Conclusão
