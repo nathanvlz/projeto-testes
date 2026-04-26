@@ -40,6 +40,23 @@ Também é importante ampliar a quantidade de testes, incluindo novos cenários 
 
 Outra melhoria relevante seria a implementação de mensagens de erro mais claras para o usuário, facilitando a correção dos dados inseridos.
 
+## Testes de Integração
+
+Com o objetivo de evoluir a qualidade dos testes do sistema, foram implementados testes de integração, permitindo validar o comportamento do sistema de forma mais abrangente, considerando a interação entre diferentes módulos.
+
+Para isso, foi desenvolvido um fluxo de criação de usuário, envolvendo as camadas de validação, serviço e repositório. Esse fluxo possibilitou verificar não apenas o funcionamento isolado das funções, mas também a comunicação entre os componentes do sistema.
+
+Foram criados testes que contemplam:
+
+Cenário de sucesso, no qual um usuário é criado corretamente com dados válidos
+Cenário de erro, no qual o sistema impede a criação de usuário com dados incompletos
+
+Durante a execução desses testes, foi possível garantir que as validações estão sendo aplicadas corretamente antes da persistência dos dados, assegurando a integridade das informações.
+
+Além disso, os testes de integração permitiram identificar e isolar inconsistências existentes em testes anteriores, reforçando a importância de validar o sistema como um todo, e não apenas em partes isoladas.
+
+
+
 ## Conclusão
 
 A realização desta atividade permitiu compreender, na prática, a importância dos testes de software na garantia da qualidade do código. Mesmo em um projeto simples, foi possível identificar falhas que poderiam passar despercebidas durante o desenvolvimento.
