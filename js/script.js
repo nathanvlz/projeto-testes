@@ -3,7 +3,7 @@ function emailValido(email) {
 }
 
 function nomeValido(nome) {
-  return !!nome && nome.length >= 3;
+  return !!nome && nome.trim().length >= 3;
 }
 
 function mensagemValida(msg) {
