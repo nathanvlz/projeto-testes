@@ -3,11 +3,11 @@ function emailValido(email) {
 }
 
 function nomeValido(nome) {
-  return nome && nome.trim().length >= 3;
+  return !!nome && nome.length >= 3;
 }
 
 function mensagemValida(msg) {
-  return msg && msg.trim().length >= 15;
+  return !!msg && msg.length >= 15;
 }
 
 module.exports = {
