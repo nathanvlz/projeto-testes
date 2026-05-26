@@ -39,6 +39,15 @@ Como forma de melhorar a qualidade do sistema, recomenda-se a substituição da 
 Também é importante ampliar a quantidade de testes, incluindo novos cenários extremos, como entradas muito longas, caracteres especiais e diferentes formatos de dados.
 
 Outra melhoria relevante seria a implementação de mensagens de erro mais claras para o usuário, facilitando a correção dos dados inseridos.
+## Métricas e Code Smells
+
+Durante a análise do projeto, foram identificados alguns problemas estruturais (code smells), principalmente relacionados à simplicidade excessiva das validações implementadas.
+
+A função de validação de e-mail apresenta baixa robustez, utilizando apenas verificações básicas com os caracteres "@" e ".", o que aumenta o risco de falsos positivos.
+
+Também foi observada uma limitação na escalabilidade da estrutura atual, já que as funções estão concentradas em poucos arquivos, dificultando futuras manutenções e expansões do sistema.
+
+Em relação à complexidade, o projeto apresenta baixa complexidade ciclomática, o que favorece a legibilidade e facilita o entendimento do código. Além disso, não foram identificadas duplicações relevantes de código.
 
 ## Conclusão
 
