@@ -1,21 +1,33 @@
+function estaPreenchido(valor) {
+  if (valor === null || valor === undefined) return false;
+  return String(valor).trim().length > 0;
+}
+ 
 function emailValido(email) {
-  return email.includes('@') && email.includes('.');
+  if (!estaPreenchido(email)) return false;
+  if (email.includes(' ')) return false;
+  const REGEX_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return REGEX_EMAIL.test(email);
 }
-
+ 
 function nomeValido(nome) {
-  return !!nome && nome.trim().length >= 3;
+  if (!estaPreenchido(nome)) return false;
+  return nome.trim().length >= 3;
 }
-
+ 
 function mensagemValida(msg) {
-  return !!msg && msg.length >= 15;
+  if (!estaPreenchido(msg)) return false;
+  return msg.trim().length >= 15;
 }
-
+ 
 module.exports = {
+  estaPreenchido,
   emailValido,
   nomeValido,
-  mensagemValida
+  mensagemValida,
 };
 
 const validacoes = require('./validacoes');
  
 module.exports = validacoes;
+ 
