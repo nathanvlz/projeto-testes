@@ -1,64 +1,122 @@
-
 const {
   emailValido,
   nomeValido,
-  mensagemValida
-} = require('../js/script');
+  mensagemValida,
+  estaPreenchido,
+} = require('../js/validacoes');
 
-describe('Validação de Email', () => {
-  test('Email válido', () => {
-    expect(emailValido('teste@email.com')).toBe(true);
+// ─── Utilitário: estaPreenchido ──────────────────────────────────────────────
+
+describe('estaPreenchido', () => {
+  test('retorna false para string vazia', () => {
+    expect(estaPreenchido('')).toBe(false);
   });
 
-  test('Email sem @', () => {
-    expect(emailValido('testeemail.com')).toBe(false);
+  test('retorna false para string só com espaços', () => {
+    expect(estaPreenchido('   ')).toBe(false);
   });
 
-  test('Email sem ponto', () => {
-    expect(emailValido('teste@email')).toBe(false);
+  test('retorna false para null', () => {
+    expect(estaPreenchido(null)).toBe(false);
   });
 
-  test('Email vazio', () => {
+  test('retorna false para undefined', () => {
+    expect(estaPreenchido(undefined)).toBe(false);
+  });
+
+  test('retorna true para string com conteúdo', () => {
+    expect(estaPreenchido('texto')).toBe(true);
+  });
+});
+
+// ─── Validação de Email ──────────────────────────────────────────────────────
+
+describe('emailValido', () => {
+  test('aceita e-mail com formato correto', () => {
+    expect(emailValido('usuario@dominio.com')).toBe(true);
+  });
+
+  test('aceita e-mail com subdomínio', () => {
+    expect(emailValido('usuario@mail.dominio.com.br')).toBe(true);
+  });
+
+  test('rejeita e-mail sem @', () => {
+    expect(emailValido('usuariodominio.com')).toBe(false);
+  });
+
+  test('rejeita e-mail sem domínio após @', () => {
+    expect(emailValido('usuario@')).toBe(false);
+  });
+
+  test('rejeita e-mail sem ponto no domínio', () => {
+    expect(emailValido('usuario@dominio')).toBe(false);
+  });
+
+  test('rejeita e-mail vazio', () => {
     expect(emailValido('')).toBe(false);
   });
 
-  test('Caso limite "@."', () => {
-    expect(emailValido('@.')).toBe(true);
+  test('rejeita caso inválido "@." (falso positivo antigo)', () => {
+    expect(emailValido('@.')).toBe(false);
+  });
+
+  test('rejeita e-mail com espaços', () => {
+    expect(emailValido('usuario @dominio.com')).toBe(false);
+  });
+
+  test('rejeita e-mail somente com @', () => {
+    expect(emailValido('@')).toBe(false);
   });
 });
 
-describe('Validação de Nome', () => {
-  test('Nome válido', () => {
-    expect(nomeValido('João')).toBe(true);
+// ─── Validação de Nome ───────────────────────────────────────────────────────
+
+describe('nomeValido', () => {
+  test('aceita nome com 3 ou mais caracteres', () => {
+    expect(nomeValido('Ana')).toBe(true);
   });
 
-  test('Nome curto', () => {
+  test('aceita nome longo com acentos', () => {
+    expect(nomeValido('José da Silva')).toBe(true);
+  });
+
+  test('rejeita nome com menos de 3 caracteres', () => {
     expect(nomeValido('Jo')).toBe(false);
   });
 
-  test('Nome vazio', () => {
+  test('rejeita nome vazio', () => {
     expect(nomeValido('')).toBe(false);
   });
 
-  test('Nome com espaços', () => {
+  test('rejeita nome composto apenas por espaços', () => {
     expect(nomeValido('   ')).toBe(false);
+  });
+
+  test('rejeita nome com espaços que resulta em menos de 3 chars', () => {
+    expect(nomeValido('  Jo  ')).toBe(false);
   });
 });
 
-describe('Validação de Mensagem', () => {
-  test('Mensagem válida', () => {
-    expect(mensagemValida('Mensagem com mais de 15 caracteres')).toBe(true);
+// ─── Validação de Mensagem ───────────────────────────────────────────────────
+
+describe('mensagemValida', () => {
+  test('aceita mensagem com mais de 15 caracteres', () => {
+    expect(mensagemValida('Esta é uma mensagem longa o suficiente')).toBe(true);
   });
 
-  test('Mensagem curta', () => {
-    expect(mensagemValida('Curta')).toBe(false);
-  });
-
-  test('Mensagem com exatamente 15 caracteres', () => {
+  test('aceita mensagem com exatamente 15 caracteres (limite)', () => {
     expect(mensagemValida('123456789012345')).toBe(true);
   });
 
-  test('Mensagem vazia', () => {
+  test('rejeita mensagem com menos de 15 caracteres', () => {
+    expect(mensagemValida('Curta demais')).toBe(false);
+  });
+
+  test('rejeita mensagem vazia', () => {
     expect(mensagemValida('')).toBe(false);
+  });
+
+  test('rejeita mensagem com apenas espaços', () => {
+    expect(mensagemValida('   ')).toBe(false);
   });
 });
