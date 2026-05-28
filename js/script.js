@@ -15,3 +15,7 @@ module.exports = {
   nomeValido,
   mensagemValida
 };
+
+const validacoes = require('./validacoes');
+ 
+module.exports = validacoes;
